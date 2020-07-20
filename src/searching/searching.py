@@ -7,7 +7,7 @@ def binary_search(arr, target, start, end):
     mid = math.floor((start + end)/2)
     if arr[mid] == target:
         return mid
-    elif start == end:
+    elif start >= end:
         return -1
     else:
         if target > arr[mid]:
@@ -21,6 +21,21 @@ def binary_search(arr, target, start, end):
 # sorted in ascending order or in descending order
 # You can implement this function either recursively 
 # or iteratively
-# def agnostic_binary_search(arr, target):
-#     # Your code here
-
+def agnostic_binary_search(arr, target, start=0, end=None):
+    # Your code here
+    if len(arr) == 0:
+        return -1
+    if end == None:
+        end = len(arr) - 1
+    # dir = -1 if array is descending, 1 if ascending
+    dir = -1 if arr[0] > arr[-1] else 1
+    mid = math.floor((start + end)/2)
+    if arr[mid] == target:
+        return mid
+    elif start >= end:
+        return -1
+    else:
+        if dir * target > dir * arr[mid]:
+            return agnostic_binary_search(arr, target, mid + 1, end)
+        else:
+            return agnostic_binary_search(arr, target, start, mid - 1)
