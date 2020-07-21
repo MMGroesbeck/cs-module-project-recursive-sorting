@@ -75,4 +75,4 @@ def merge_sort_in_place(arr, l, r):
         if l < r-1:
             merge_sort_in_place(arr, l, mid)
             merge_sort_in_place(arr, mid, r)
-        merge_in_place(arr, l, mid, r)
+        merge_in_place(arr, l, mid, r + 1)
